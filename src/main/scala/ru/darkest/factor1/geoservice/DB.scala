@@ -260,7 +260,7 @@ class DB(config: Config) extends LazyLogging {
         getStatement.map { statement =>
           val (latMin, latMax) = lat
           val (lonMin, lonMax) = lon
-          val select = s"SELECT TOP 1000 * FROM USERS WHERE LAT>=$latMin AND LAT<=$latMax AND LON>=$lonMin AND LON<=$lonMax"
+          val select = s"SELECT * FROM USERS WHERE LAT>=$latMin AND LAT<=$latMax AND LON>=$lonMin AND LON<=$lonMax"
           val resultSet = statement.executeQuery(select)
           val result = scala.collection.mutable.ListBuffer[UserWithLocation]()
           while (resultSet.next()) {
